@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Slider } from 'react-native-elements'; // Make sure this package is installed
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { Slider } from 'react-native-elements';
 
 const Index = () => {
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -12,21 +12,19 @@ const Index = () => {
     <View style={styles.container}>
       <Text style={styles.header}>Travel</Text>
 
-      {/* Horizontal Slider for Selecting Letters */}
+      {/* Slider for Selecting Letters */}
       <Slider
         value={selectedLetterIndex}
-        onValueChange={(value: number) => setSelectedLetterIndex(Math.round(value))}
+        onValueChange={(value) => setSelectedLetterIndex(Math.round(value))}
         step={1}
         minimumValue={0}
         maximumValue={25}
-        thumbTintColor="red"
         style={styles.letterSlider}
       />
       <Text style={styles.letterDisplay}>
         Selected Letter: {letters[selectedLetterIndex]}
       </Text>
 
-      {/* Grid for Travel Category Boxes */}
       <View style={styles.gridContainer}>
         {['Travel', 'Plane', 'Hotels', 'Resorts', 'Events', 'Car', 'Home', 'Beauty', 'Sport'].map((category) => (
           <TouchableOpacity key={category} style={styles.box}>
@@ -39,7 +37,7 @@ const Index = () => {
         {/* Left Slider for Cities */}
         <Slider
           value={0}
-          onValueChange={(value: number) =>
+          onValueChange={(value) =>
             setSelectedLocation(['Boston', 'NYC', 'DC', 'Miami', 'Singapore', 'Paris', 'Rome'][Math.round(value)])
           }
           step={1}
@@ -47,19 +45,17 @@ const Index = () => {
           maximumValue={6}
           orientation="vertical"
           style={styles.verticalSlider}
-          thumbTintColor="red"
         />
 
         {/* Right Slider for Years */}
         <Slider
           value={2017}
-          onValueChange={(value: number) => setSelectedYear(Math.round(value))}
+          onValueChange={(value) => setSelectedYear(Math.round(value))}
           step={1}
           minimumValue={2017}
           maximumValue={2025}
           orientation="vertical"
           style={styles.verticalSlider}
-          thumbTintColor="red"
         />
       </View>
 
